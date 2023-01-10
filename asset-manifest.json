@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/FireBaseToDoList/static/css/main.012c4702.css",
+    "main.js": "/FireBaseToDoList/static/js/main.bc70da06.js",
+    "static/js/787.4f640dcb.chunk.js": "/FireBaseToDoList/static/js/787.4f640dcb.chunk.js",
+    "static/media/firebase.png": "/FireBaseToDoList/static/media/firebase.5857e021bf02081fa355.png",
+    "index.html": "/FireBaseToDoList/index.html",
+    "main.012c4702.css.map": "/FireBaseToDoList/static/css/main.012c4702.css.map",
+    "main.bc70da06.js.map": "/FireBaseToDoList/static/js/main.bc70da06.js.map",
+    "787.4f640dcb.chunk.js.map": "/FireBaseToDoList/static/js/787.4f640dcb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.012c4702.css",
+    "static/js/main.bc70da06.js"
+  ]
+}
