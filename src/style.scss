@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+}
+
+li {
+    list-style: none;
+}
+
+
+.Heading {
+    padding: 1% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(55, 108, 255);
+
+    h1 {
+        background-color: transparent;
+        font-size: 5rem;
+        text-align: center;
+    }
+
+    img {
+        margin-right: 1%;
+        width: 30em;
+        border-radius: 100%;
+        background-color: aliceblue;
+        padding: 5em;
+        border: 2em solid black;
+    }
+
+    border-bottom: 1rem solid black;
+}
+
+.Form {
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+        font-size: 2rem;
+        border-radius: 20em;
+        padding-left: 1em;
+        border-color: black;
+    }
+
+    button {
+        margin-left: 1em;
+        padding: 0.1em 1em;
+        font-size: 2rem;
+        background-color: black;
+        color: aliceblue;
+        cursor: pointer;
+    }
+}
+
+.Content {
+    margin-top: 2%;
+    width: 100%;
+
+    h1 {
+        font-size: 4rem;
+        text-align: center;
+    }
+}
+
+.ListItem {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+
+        .Note {
+
+            margin: 1% 2%;
+            padding: 1%;
+            background-color: aquamarine;
+            width: 200em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 10em;
+            transition: 0.3s;
+
+            &:hover {
+                transition: 0.3s;
+                box-shadow: 5em 5em 5em black;
+            }
+
+            li {
+                font-size: 2.5rem;
+                font-weight: bold;
+                background-color: transparent;
+            }
+
+            button {
+                padding: 0.2em 1em;
+                cursor: pointer;
+                margin: 2% 0;
+                font-size: 2rem;
+
+            }
+        }
+    }
+}
+
+@media (max-width:426px) {
+    .Heading{
+        h1{
+            font-size: 4.5rem;
+        }
+    }
+    .Form{
+        form{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 2%;
+            button{
+                margin-top: 4%;
+            }
+        }
+    }
+}
