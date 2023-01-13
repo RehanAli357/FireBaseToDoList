@@ -1,52 +1,54 @@
 import React, { useState, useEffect } from "react";
 import "./style.css"
-import db from "./firebaseConfig";
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import Firebase from "./firebase.png";
+import db from "./firebaseConfig";
+import {collection , getDocs , addDoc , updateDoc , doc , deleteDoc} from "firebase/firestore";
 
 const ToDo = () => {
     const [input, setinput] = useState("");
-    const [data, setdata] = useState([]);
+    const [Data, setData] = useState([]);
     const [toggle, settoggle] = useState("false");
     const [id, setid] = useState("");
 
-    const userCollectionRef = collection(db, "data");
-
+    const userCollection=collection(db,"list");
     const getData = async () => {
-        const data = await getDocs(userCollectionRef);
-        setdata(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        const data = await getDocs(userCollection);
+        setData(data.docs.map((listdata)=>({...listdata.data(),id:listdata.id})));
     };
     useEffect(() => {
         getData();
-    }, []);
-    const SaveData = async (event) => {
+    },[]);
+
+
+    const SetData =   (event) => {
         event.preventDefault();
         if (input === "") {
             alert("Enter the Data");
         }
         else {
-            await addDoc(userCollectionRef, { todo: input });
+            addDoc(userCollection,{todo:input});
             setinput("");
             getData();
         }
 
     }
-    const updateData = (ID, data) => {
+    const updateData = (data,id) => {
+        setid(id);
         setinput(data);
-        settoggle("true")
-        setid(ID);
-    }
-    const SetUpdateData = async () => {
         settoggle("true");
-        let dataDoc = doc(db, "data", id);
-        let updatedata = { todo: input };
-        await updateDoc(dataDoc, updatedata);
-        getData();
-
     }
-    const delateData = async (id) => {
-        const dataDoc = doc(db, "data", id);
-        await deleteDoc(dataDoc);
+    const UpdateButton = async (event) => {
+        event.preventDefault();
+        let userDoc=doc(db,"list",id);
+        let updatedData={todo:input};
+        await updateDoc(userDoc,updatedData);
+        setinput("");
+        getData();
+        settoggle("false");
+    }
+    const delateData =  async (id) => {
+        let userDoc=doc(db,"list",id);
+        await deleteDoc(userDoc);
         getData();
     }
 
@@ -60,7 +62,7 @@ const ToDo = () => {
                 <form>
                     <input placeholder="Enter Data" value={input} onChange={(event) => { setinput(event.target.value); }} />
                     {
-                        (toggle === "false") ? (<button type="submit" onClick={SaveData}>Save🖊️</button>) : (<button type="submit" onClick={SetUpdateData}>Update✏️</button>)
+                        (toggle === "false") ? (<button type="submit" onClick={SetData}>Save🖊️</button>) : (<button type="submit" onClick={UpdateButton}>Update✏️</button>)
                     }
                 </form>
             </div>
@@ -70,12 +72,12 @@ const ToDo = () => {
             <div className="ListItem">
                 <ul>
                     {
-                        data.map((data) => {
+                        Data.map((data) => {
                             return (
                                 <React.Fragment>
                                     <div className="Note">
-                                        <li key={data.id}>{data.todo}</li>
-                                        <button onClick={() => { updateData(data.id, data.todo) }}>Update</button>
+                                        <li>{data.todo}</li>
+                                        <button onClick={() => { updateData(data.todo,data.id) }}>Update</button>
                                         <button onClick={() => { delateData(data.id) }}>Delete</button>
                                     </div>
 
